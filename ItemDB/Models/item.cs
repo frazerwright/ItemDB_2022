@@ -12,7 +12,7 @@ namespace ItemDB.Models
         public string Personal_Notes { get; set; }
         public string Archetype { get; set; }
  
-
+        public order order { get; set; } 
        
     }
 }
