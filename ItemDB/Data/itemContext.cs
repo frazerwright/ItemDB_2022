@@ -11,7 +11,7 @@ namespace ItemDB.Data
         }
         public DbSet<item> Items { get; set; }
         public DbSet<order> Orders { get; set; }
-        public DbSet<recipient> recipients { get; set; }
+        public DbSet<recipient> Recipients { get; set; }
 
     }
 }
