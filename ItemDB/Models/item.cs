@@ -5,7 +5,8 @@ namespace ItemDB.Models
 {
     public class item
     {
-        public int ItemId { get; set; }
+        public int itemId { get; set; }
+        public int orderId { get; set; }
         public string Name { get; set; }
         public string Rarity { get; set; }
         public string Description { get; set; }
