@@ -8,6 +8,7 @@ namespace ItemDB.Models
 {
     public class order
     {
+        [Display(Name = "Tracking number")]
         public int orderId { get; set; } 
         [Display(Name = "Estimated delivery")]
         public DateTime EstimatedDelivery { get; set; }
