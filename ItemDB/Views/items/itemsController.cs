@@ -20,10 +20,29 @@ namespace ItemDB.Views.items
         }
 
         // GET: items
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var itemDBContext = _context.item.Include(i => i.order);
-            return View(await itemDBContext.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["CurrentFilter"] = searchString;
+
+            var items = from s in _context.item
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                items = items.Where(s => s.Name.Contains(searchString));
+                                       
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    items = items.OrderByDescending(s => s.Name);
+                    break;
+                
+                default:
+                    items = items.OrderBy(s => s.Name);
+                    break;
+            }
+            return View(await items.AsNoTracking().ToListAsync());
         }
 
         // GET: items/Details/5
