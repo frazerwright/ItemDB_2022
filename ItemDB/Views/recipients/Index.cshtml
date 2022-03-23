@@ -19,9 +19,8 @@
                 @Html.DisplayNameFor(model => model.ItemOrdered)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.order)
+                @Html.DisplayNameFor(model => model.RecipientId)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -34,12 +33,12 @@
                 @Html.DisplayFor(modelItem => item.ItemOrdered)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.order.orderId)
+                @Html.DisplayFor(modelItem => item.RecipientId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.recipientId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.recipientId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.recipientId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.RecipientId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RecipientId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RecipientId">Delete</a>
             </td>
         </tr>
 }

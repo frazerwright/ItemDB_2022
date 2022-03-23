@@ -5,12 +5,13 @@ namespace ItemDB.Models
 {
     public class recipient
     {
-        public int recipientId { get; set; }
-        public int orderId { get; set; }
+        [Display(Name = "Tracking number")]
+        public int RecipientId { get; set; }
+        public int OrderId { get; set; }
         public string Address { get; set; }
         [Display(Name = "Item ordered")]
         public string ItemOrdered { get; set; }
-        [Display(Name = "Tracking number")]
-        public order order { get; set; }
+        
+        public order Order { get; set; }
     }
 }

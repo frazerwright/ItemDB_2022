@@ -54,8 +54,8 @@ namespace ItemDB.Views.items
             }
 
             var item = await _context.item
-                .Include(i => i.order)
-                .FirstOrDefaultAsync(m => m.itemId == id);
+                .Include(i => i.Order)
+                .FirstOrDefaultAsync(m => m.ItemId == id);
             if (item == null)
             {
                 return NotFound();
@@ -84,7 +84,7 @@ namespace ItemDB.Views.items
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["orderId"] = new SelectList(_context.Set<order>(), "orderId", "orderId", item.orderId);
+            ViewData["orderId"] = new SelectList(_context.Set<order>(), "orderId", "orderId", item.OrderId);
             return View(item);
         }
 
@@ -101,7 +101,7 @@ namespace ItemDB.Views.items
             {
                 return NotFound();
             }
-            ViewData["orderId"] = new SelectList(_context.Set<order>(), "orderId", "orderId", item.orderId);
+            ViewData["orderId"] = new SelectList(_context.Set<order>(), "orderId", "orderId", item.OrderId);
             return View(item);
         }
 
@@ -112,7 +112,7 @@ namespace ItemDB.Views.items
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("itemId,orderId,Name,Rarity,Description,Personal_Notes,Archetype")] item item)
         {
-            if (id != item.itemId)
+            if (id != item.ItemId)
             {
                 return NotFound();
             }
@@ -126,7 +126,7 @@ namespace ItemDB.Views.items
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!itemExists(item.itemId))
+                    if (!itemExists(item.ItemId))
                     {
                         return NotFound();
                     }
@@ -137,7 +137,7 @@ namespace ItemDB.Views.items
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["orderId"] = new SelectList(_context.Set<order>(), "orderId", "orderId", item.orderId);
+            ViewData["orderId"] = new SelectList(_context.Set<order>(), "orderId", "orderId", item.OrderId);
             return View(item);
         }
 
@@ -150,8 +150,8 @@ namespace ItemDB.Views.items
             }
 
             var item = await _context.item
-                .Include(i => i.order)
-                .FirstOrDefaultAsync(m => m.itemId == id);
+                .Include(i => i.Order)
+                .FirstOrDefaultAsync(m => m.ItemId == id);
             if (item == null)
             {
                 return NotFound();
@@ -173,7 +173,7 @@ namespace ItemDB.Views.items
 
         private bool itemExists(int id)
         {
-            return _context.item.Any(e => e.itemId == id);
+            return _context.item.Any(e => e.ItemId == id);
         }
     }
 }

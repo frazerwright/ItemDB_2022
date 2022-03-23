@@ -22,7 +22,7 @@ namespace ItemDB.Views.recipients
         // GET: recipients
         public async Task<IActionResult> Index()
         {
-            var itemDBContext = _context.recipient.Include(r => r.order);
+            var itemDBContext = _context.recipient.Include(r => r.Order);
             return View(await itemDBContext.ToListAsync());
         }
 
@@ -35,8 +35,8 @@ namespace ItemDB.Views.recipients
             }
 
             var recipient = await _context.recipient
-                .Include(r => r.order)
-                .FirstOrDefaultAsync(m => m.recipientId == id);
+                .Include(r => r.Order)
+                .FirstOrDefaultAsync(m => m.RecipientId == id);
             if (recipient == null)
             {
                 return NotFound();
@@ -65,7 +65,7 @@ namespace ItemDB.Views.recipients
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["orderId"] = new SelectList(_context.order, "orderId", "orderId", recipient.orderId);
+            ViewData["orderId"] = new SelectList(_context.order, "orderId", "orderId", recipient.OrderId);
             return View(recipient);
         }
 
@@ -82,7 +82,7 @@ namespace ItemDB.Views.recipients
             {
                 return NotFound();
             }
-            ViewData["orderId"] = new SelectList(_context.order, "orderId", "orderId", recipient.orderId);
+            ViewData["orderId"] = new SelectList(_context.order, "orderId", "orderId", recipient.OrderId);
             return View(recipient);
         }
 
@@ -93,7 +93,7 @@ namespace ItemDB.Views.recipients
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("recipientId,orderId,Address,ItemOrdered")] recipient recipient)
         {
-            if (id != recipient.recipientId)
+            if (id != recipient.RecipientId)
             {
                 return NotFound();
             }
@@ -107,7 +107,7 @@ namespace ItemDB.Views.recipients
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!recipientExists(recipient.recipientId))
+                    if (!recipientExists(recipient.RecipientId))
                     {
                         return NotFound();
                     }
@@ -118,7 +118,7 @@ namespace ItemDB.Views.recipients
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["orderId"] = new SelectList(_context.order, "orderId", "orderId", recipient.orderId);
+            ViewData["orderId"] = new SelectList(_context.order, "orderId", "orderId", recipient.OrderId);
             return View(recipient);
         }
 
@@ -131,8 +131,8 @@ namespace ItemDB.Views.recipients
             }
 
             var recipient = await _context.recipient
-                .Include(r => r.order)
-                .FirstOrDefaultAsync(m => m.recipientId == id);
+                .Include(r => r.Order)
+                .FirstOrDefaultAsync(m => m.RecipientId == id);
             if (recipient == null)
             {
                 return NotFound();
@@ -154,7 +154,7 @@ namespace ItemDB.Views.recipients
 
         private bool recipientExists(int id)
         {
-            return _context.recipient.Any(e => e.recipientId == id);
+            return _context.recipient.Any(e => e.RecipientId == id);
         }
     }
 }

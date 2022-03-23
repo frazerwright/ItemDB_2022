@@ -9,15 +9,16 @@ namespace ItemDB.Models
     public class order
     {
         [Display(Name = "Tracking number")]
-        public int orderId { get; set; } 
+        public int OrderId { get; set; } 
         [Display(Name = "Estimated delivery")]
+        [DataType(DataType.Date)]
         public DateTime EstimatedDelivery { get; set; }
         [Display(Name = "Shipping method")]
         public string ShippingMethod { get; set; }
         [Display(Name = "Shipping notes")]
         public string ShippingNotes { get; set; }
-
-        public ICollection<item> item { get; set; }
-        public recipient recipient { get; set; }
+        [Display(Name = "Shipping notes")]
+        public ICollection<item> Item { get; set; }
+        public recipient Recipient { get; set; }
     }
 }

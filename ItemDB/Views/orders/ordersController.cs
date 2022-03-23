@@ -34,7 +34,7 @@ namespace ItemDB.Views.orders
             }
 
             var order = await _context.order
-                .FirstOrDefaultAsync(m => m.orderId == id);
+                .FirstOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace ItemDB.Views.orders
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("orderId,EstimatedDelivery,ShippingMethod,ShippingNotes")] order order)
         {
-            if (id != order.orderId)
+            if (id != order.OrderId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ItemDB.Views.orders
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!orderExists(order.orderId))
+                    if (!orderExists(order.OrderId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace ItemDB.Views.orders
             }
 
             var order = await _context.order
-                .FirstOrDefaultAsync(m => m.orderId == id);
+                .FirstOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace ItemDB.Views.orders
 
         private bool orderExists(int id)
         {
-            return _context.order.Any(e => e.orderId == id);
+            return _context.order.Any(e => e.OrderId == id);
         }
     }
 }
