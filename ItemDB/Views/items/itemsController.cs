@@ -67,7 +67,7 @@ namespace ItemDB.Views.items
         // GET: items/Create
         public IActionResult Create()
         {
-            ViewData["orderId"] = new SelectList(_context.Set<order>(), "orderId", "orderId");
+            ViewData["OrderId"] = new SelectList(_context.Set<order>(), "OrderId", "OrderId");
             return View();
         }
 
@@ -76,7 +76,7 @@ namespace ItemDB.Views.items
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("itemId,orderId,Name,Rarity,Description,Personal_Notes,Archetype")] item item)
+        public async Task<IActionResult> Create([Bind("itemId,OrderId,Name,Rarity,Description,Personal_Notes,Archetype")] item item)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace ItemDB.Views.items
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["orderId"] = new SelectList(_context.Set<order>(), "orderId", "orderId", item.OrderId);
+            ViewData["OrderId"] = new SelectList(_context.Set<order>(), "OrderId", "OrderId", item.OrderId);
             return View(item);
         }
 
@@ -101,7 +101,7 @@ namespace ItemDB.Views.items
             {
                 return NotFound();
             }
-            ViewData["orderId"] = new SelectList(_context.Set<order>(), "orderId", "orderId", item.OrderId);
+            ViewData["OrderId"] = new SelectList(_context.Set<order>(), "OrderId", "OrderId", item.OrderId);
             return View(item);
         }
 
@@ -110,7 +110,7 @@ namespace ItemDB.Views.items
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("itemId,orderId,Name,Rarity,Description,Personal_Notes,Archetype")] item item)
+        public async Task<IActionResult> Edit(int id, [Bind("itemId,OrderId,Name,Rarity,Description,Personal_Notes,Archetype")] item item)
         {
             if (id != item.ItemId)
             {
@@ -137,7 +137,7 @@ namespace ItemDB.Views.items
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["orderId"] = new SelectList(_context.Set<order>(), "orderId", "orderId", item.OrderId);
+            ViewData["OrderId"] = new SelectList(_context.Set<order>(), "OrderId", "OrderId", item.OrderId);
             return View(item);
         }
 

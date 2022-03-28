@@ -91,7 +91,7 @@ namespace ItemDB.Views.recipients
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("recipientId,orderId,Address,ItemOrdered")] recipient recipient)
+        public async Task<IActionResult> Edit(int id, [Bind("recipientId,OrderId,Address,ItemOrdered")] recipient recipient)
         {
             if (id != recipient.RecipientId)
             {
@@ -118,7 +118,7 @@ namespace ItemDB.Views.recipients
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["orderId"] = new SelectList(_context.order, "orderId", "orderId", recipient.OrderId);
+            ViewData["OrderId"] = new SelectList(_context.order, "OrderId", "OrderId", recipient.OrderId);
             return View(recipient);
         }
 

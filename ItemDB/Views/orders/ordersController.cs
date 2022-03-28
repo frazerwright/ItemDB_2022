@@ -86,7 +86,7 @@ namespace ItemDB.Views.orders
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("orderId,EstimatedDelivery,ShippingMethod,ShippingNotes")] order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,EstimatedDelivery,ShippingMethod,ShippingNotes")] order order)
         {
             if (id != order.OrderId)
             {
