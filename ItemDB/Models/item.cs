@@ -9,13 +9,16 @@ namespace ItemDB.Models
     {
         [Display(Name = "ID")]
         public int ItemId { get; set; }
-        [Display(Name = "Order number")]
         public int OrderId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Rarity { get; set; }
+        [Required]
         public string Description { get; set; }
         [Display(Name = "Personal notes")]
-        public string Personal_Notes { get; set; }
+        public string? Personal_Notes { get; set; }
+        [Required]
         public string Archetype { get; set; }
         [Display(Name = "Tracking number")]
         public order Order { get; set; } 

@@ -51,23 +51,23 @@ namespace ItemDB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("orderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.HasKey("itemId");
 
-                    b.HasIndex("orderId");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("item");
                 });
 
             modelBuilder.Entity("ItemDB.Models.order", b =>
                 {
-                    b.Property<int>("orderId")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("orderId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
                     b.Property<DateTime>("EstimatedDelivery")
                         .HasColumnType("datetime2");
@@ -80,7 +80,7 @@ namespace ItemDB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("orderId");
+                    b.HasKey("OrderId");
 
                     b.ToTable("order");
                 });
@@ -101,12 +101,12 @@ namespace ItemDB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("orderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.HasKey("recipientId");
 
-                    b.HasIndex("orderId")
+                    b.HasIndex("OrderId")
                         .IsUnique();
 
                     b.ToTable("recipient");
@@ -116,7 +116,7 @@ namespace ItemDB.Migrations
                 {
                     b.HasOne("ItemDB.Models.order", "order")
                         .WithMany("item")
-                        .HasForeignKey("orderId")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -127,7 +127,7 @@ namespace ItemDB.Migrations
                 {
                     b.HasOne("ItemDB.Models.order", "order")
                         .WithOne("recipient")
-                        .HasForeignKey("ItemDB.Models.recipient", "orderId")
+                        .HasForeignKey("ItemDB.Models.recipient", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

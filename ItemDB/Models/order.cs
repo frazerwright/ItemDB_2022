@@ -14,9 +14,10 @@ namespace ItemDB.Models
         [DataType(DataType.Date)]
         public DateTime EstimatedDelivery { get; set; }
         [Display(Name = "Shipping method")]
+        [Required]
         public string ShippingMethod { get; set; }
         [Display(Name = "Shipping notes")]
-        public string ShippingNotes { get; set; }
+        public string? ShippingNotes { get; set; }
         [Display(Name = "Shipping notes")]
         public ICollection<item> Item { get; set; }
         public recipient Recipient { get; set; }

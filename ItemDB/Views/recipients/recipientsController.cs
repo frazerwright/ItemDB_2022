@@ -48,7 +48,7 @@ namespace ItemDB.Views.recipients
         // GET: recipients/Create
         public IActionResult Create()
         {
-            ViewData["orderId"] = new SelectList(_context.order, "orderId", "orderId");
+            ViewData["OrderId"] = new SelectList(_context.order, "OrderId", "OrderId");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace ItemDB.Views.recipients
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("recipientId,orderId,Address,ItemOrdered")] recipient recipient)
+        public async Task<IActionResult> Create([Bind("recipientId,OrderId,Address,ItemOrdered")] recipient recipient)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace ItemDB.Views.recipients
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["orderId"] = new SelectList(_context.order, "orderId", "orderId", recipient.OrderId);
+            ViewData["OrderId"] = new SelectList(_context.order, "OrderId", "OrderId", recipient.OrderId);
             return View(recipient);
         }
 
@@ -82,7 +82,7 @@ namespace ItemDB.Views.recipients
             {
                 return NotFound();
             }
-            ViewData["orderId"] = new SelectList(_context.order, "orderId", "orderId", recipient.OrderId);
+            ViewData["OrderId"] = new SelectList(_context.order, "OrderId", "OrderId", recipient.OrderId);
             return View(recipient);
         }
 

@@ -126,6 +126,7 @@ namespace ItemDB.Views.items
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+
                     if (!itemExists(item.ItemId))
                     {
                         return NotFound();

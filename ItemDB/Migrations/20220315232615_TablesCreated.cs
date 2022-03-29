@@ -13,7 +13,7 @@ namespace ItemDB.Migrations
                 name: "order",
                 columns: table => new
                 {
-                    orderId = table.Column<int>(type: "int", nullable: false)
+                    OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EstimatedDelivery = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ShippingMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -21,7 +21,7 @@ namespace ItemDB.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_order", x => x.orderId);
+                    table.PrimaryKey("PK_order", x => x.OrderId);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,7 +30,7 @@ namespace ItemDB.Migrations
                 {
                     itemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    orderId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rarity = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -41,10 +41,10 @@ namespace ItemDB.Migrations
                 {
                     table.PrimaryKey("PK_item", x => x.itemId);
                     table.ForeignKey(
-                        name: "FK_item_order_orderId",
-                        column: x => x.orderId,
+                        name: "FK_item_order_OrderId",
+                        column: x => x.OrderId,
                         principalTable: "order",
-                        principalColumn: "orderId",
+                        principalColumn: "OrderId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -54,7 +54,7 @@ namespace ItemDB.Migrations
                 {
                     recipientId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    orderId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ItemOrdered = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -62,22 +62,22 @@ namespace ItemDB.Migrations
                 {
                     table.PrimaryKey("PK_recipient", x => x.recipientId);
                     table.ForeignKey(
-                        name: "FK_recipient_order_orderId",
-                        column: x => x.orderId,
+                        name: "FK_recipient_order_OrderId",
+                        column: x => x.OrderId,
                         principalTable: "order",
-                        principalColumn: "orderId",
+                        principalColumn: "OrderId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_item_orderId",
+                name: "IX_item_OrderId",
                 table: "item",
-                column: "orderId");
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_recipient_orderId",
+                name: "IX_recipient_OrderId",
                 table: "recipient",
-                column: "orderId",
+                column: "OrderId",
                 unique: true);
         }
 
