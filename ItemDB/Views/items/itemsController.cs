@@ -20,10 +20,20 @@ namespace ItemDB.Views.items
         }
 
         // GET: items
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
             var items = from s in _context.item
                            select s;
@@ -42,7 +52,8 @@ namespace ItemDB.Views.items
                     items = items.OrderBy(s => s.Name);
                     break;
             }
-            return View(await items.AsNoTracking().ToListAsync());
+            int pageSize = 3;
+            return View(await PaginatedList<Item>.CreateAsync(items.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: items/Details/5
